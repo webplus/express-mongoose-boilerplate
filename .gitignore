@@ -1,3 +1,5 @@
+# Created by .ignore support plugin (hsz.mobi)
+### Node template
 # Logs
 logs
 *.log
@@ -57,3 +59,10 @@ typings/
 # dotenv environment variables file
 .env
 
+
+.eslintrc
+.idea/
+.vscode/
+!app.js
+
+.DS_Store

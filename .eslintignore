@@ -1,0 +1,6 @@
+public/*.js
+bin/*.js
+test/*.js
+examples/*.js
+docs/*.js
+types/*.js
