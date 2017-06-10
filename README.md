@@ -1,6 +1,6 @@
 
 
-## Node Express Mongoose boilerplate
+## Node Express Mongoose boilerplate.
 A boilerplate application for building web apps using express, mongoose and passport.
 
 
