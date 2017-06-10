@@ -1,0 +1,35 @@
+{
+  "root": true,
+  "parser": "babel-eslint",
+  "extends": "standard",
+  "parserOptions": {
+    "ecmaVersion": 2017,
+    "sourceType": "module"
+  },
+  "ecmaFeatures": {
+    "globalReturn": true,
+    "jsx": true,
+    "modules": true
+  },
+  "plugins": [
+    "import",
+    "jest"
+  ],
+  "env": {
+    "node": true,
+    "es6": true,
+    "jest": true
+  },
+  "rules": {
+    "no-console": "off",
+    "jest/no-focused-tests": 2,
+    "jest/no-identical-title": 2,
+    "arrow-parens": 0,
+    "indent": [2, 2] //缩进风格
+  },
+  "globals": {
+    "share": true,
+    "ShearLib": true,
+    "$": true
+  }
+}
