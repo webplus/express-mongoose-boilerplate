@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
 const httpStatus = require('http-status')
-const APIError = require('../helpers/APIError')
+const CustError = require('../helpers/APIError')
 
 const UserSchema = new mongoose.Schema({
   id: {
@@ -71,7 +71,7 @@ UserSchema.statics = {
         if (user) {
           return user
         }
-        const err = new APIError('No such user exists!', httpStatus.NOT_FOUND)
+        const err = new CustError.APIError('No such user exists!', httpStatus.NOT_FOUND)
         return Promise.reject(err)
       })
   },

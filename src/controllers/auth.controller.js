@@ -2,7 +2,7 @@ const debug = require('debug')('app:auth.controller:' + process.pid)
 const _ = require('lodash')
 // const jwt = require('jsonwebtoken')
 const httpStatus = require('http-status')
-const APIError = require('../helpers/APIError')
+const CustError = require('../helpers/APIError')
 // const config = require('../config/index')
 const UserModel = require('../models/user.model')
 // const tokenManager = require('../config/tokenManager')
@@ -30,7 +30,7 @@ function register (req, res, next) {
   }).catch(function (e) {
     logger.log('error', '写入用户到数据库失败 %j', req.body)
     // return res.json({ success: false, message: 'This user already exists!' })
-    const error = new APIError(`${e.name} : ${e._message}`, httpStatus.UNAUTHORIZED)
+    const error = new CustError.APIError(`${e.name} : ${e._message}`, httpStatus.UNAUTHORIZED)
     next(error)
   })
 }
@@ -54,7 +54,7 @@ function login (req, res, next) {
 
   UserModel.findOne({username: username}, function (err, user) {
     if (err) {
-      const error = new APIError('Authentication error', httpStatus.UNAUTHORIZED, true)
+      const error = new CustError.APIError('Authentication error', httpStatus.UNAUTHORIZED, true)
       return next(error)
     }
     if (!user) {

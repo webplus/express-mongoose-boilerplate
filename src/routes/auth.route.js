@@ -1,8 +1,8 @@
 const express = require('express')
 const validate = require('express-validation')
 const passport = require('passport')
-const jwt = require('express-jwt')
-const config = require('../config/index')
+// const jwt = require('express-jwt')
+// const config = require('../config/index')
 const tokenManager = require('../config/token')
 const paramValidation = require('../config/paramValidation')
 const authCtrl = require('../controllers/auth.controller')
@@ -11,6 +11,8 @@ const router = express.Router()  // eslint-disable-line new-cap
 /** POST /api/auth/login - Returns token if correct username and password is provided */
 router.route('/login')
   .post(validate(paramValidation.login), authCtrl.login)
+
+router.get('/logout', tokenManager.verify, authCtrl.logout)
 
 router.route('/register')
   .post(validate(paramValidation.register), authCtrl.register)

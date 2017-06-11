@@ -3,7 +3,7 @@ const redisClient = require('./redis').redisClient
 const jsonwebtoken = require('jsonwebtoken')
 const httpStatus = require('http-status')
 const config = require('./index')
-const APIError = require('../helpers/APIError')
+const CustError = require('../helpers/APIError')
 const TOKEN_EXPIRATION = 60
 const TOKEN_EXPIRATION_SEC = TOKEN_EXPIRATION * 60
 
@@ -107,14 +107,15 @@ const verify = function (req, res, next) {
   jsonwebtoken.verify(token, config.app.jwtSecret, function (err, decode) {
     if (err) {
       req.user = undefined
-      const error = new APIError('invalid_token', httpStatus.UNAUTHORIZED, true)
+      const error = new CustError.UnauthorizedError({code: '0001', message: 'invalid_token', isPublic: true})
+      // return res.json({'code': '0001', 'message': 'invalid_token', 'data': {}})
       return next(error)
     }
 
     retrieve(token, function (err, data) {
       if (err) {
         req.user = undefined
-        const error = new APIError('invalid_token', httpStatus.UNAUTHORIZED, true)
+        const error = new CustError.UnauthorizedError('invalid_token', httpStatus.UNAUTHORIZED, true)
         return next(error)
       }
       req.user = data
@@ -166,7 +167,7 @@ const tokenMiddleware = function () {
     retrieve(token, function (err, data) {
       if (err) {
         req.user = undefined
-        const error = new APIError('invalid_token', httpStatus.UNAUTHORIZED, true)
+        const error = new CustError.UnauthorizedError('invalid_token', httpStatus.UNAUTHORIZED, true)
         return next(error)
       } else {
         req.user = data // _.merge(req.user, data)

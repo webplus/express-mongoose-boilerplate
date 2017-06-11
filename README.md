@@ -53,6 +53,9 @@ logger.error("127.0.0.1 - there's no place like home");
 https://github.com/crocodilejs/crocodile-node-mvc-framework/blob/development/package.json
 
 REST JWT DEMO
+
+https://github.com/ilijamt/express-jwt-auth-mongoose/
+
 https://ericswann.wordpress.com/2015/04/24/nozus-js-1-intro-to-sails-with-passport-and-jwt-json-web-token-auth/
 https://matoski.com/article/jwt-express-node-mongoose/#utils
 
